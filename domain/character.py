@@ -2,7 +2,7 @@ class Character:
     def __init__(self,name:str,health:int,attack_power:int):
         self.name = name
         self._health = health
-        self.__max_health = health
+        self._max_health = health
         self.attack_power = attack_power
 
     @property
@@ -22,11 +22,12 @@ class Character:
         return f"{self.name} has {self.health} HP and {self.attack_power} ATK"
 
     def attack(self, target: "Character")->None:
-        target.health -= self.attack_power
+        target.take_damage(self.attack_power)
         print(f"{self.name} attacks {target.name} for {self.attack_power} damage!")
 
-    def heal(self, target: "Character")->None:
-        if not self.is_alive:
-            return
-        target.take_damage(self.attack_power)
-        print(f" {self.name} attacks {target.name} for {self.attack_power} damage!")
+    def heal(self,target:"Character",amount : int)->None:
+        if amount < 0:
+            raise ValueError("Healing amount cannot be negetive")
+
+        target._health = min(target._max_health + amount,target._health + amount)
+        print(f"{self.name} heals {target.name} to {target.health} HP")

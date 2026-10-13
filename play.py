@@ -1,21 +1,16 @@
-from domain.character import Character
+from domain.classes  import Warrior,Mage,Cleric
 
 if __name__=="__main__":
-    """hero = Character("Araia",100,15)
-    goblin = Character("Goblin",30,15)
 
-    print(hero.describe())
-    print(goblin.describe())
+    warrior = Warrior("Bram")
+    mage = Mage("Sylla")
+    cleric = Cleric("Anbu")
 
-    hero.attack(goblin)
-    print(goblin.describe())
+    warrior.take_damage(50)
+    cleric.special_ability(warrior)
 
-    goblin.heal(goblin)
-    print(goblin.describe())
+    print(warrior.health)
 
-    hero.heal(hero)
-    print(hero.describe()) """
 
-    hero = Character("Araia",100,15)
-    hero.take_damage(150)
-    print(hero.health)
+
+    
